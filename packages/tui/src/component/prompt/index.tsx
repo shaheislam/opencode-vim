@@ -76,6 +76,7 @@ import { usePromptWorkspace } from "./workspace"
 import { usePromptMove } from "./move"
 import { readLocalAttachment } from "./local-attachment"
 import { useLocation } from "../../context/location"
+import { configurePromptListeners } from "./listeners"
 
 registerOpencodeSpinner()
 
@@ -1938,6 +1939,7 @@ export function Prompt(props: PromptProps) {
               }}
               ref={(r: TextareaRenderable) => {
                 input = r
+                configurePromptListeners(r)
                 Object.assign(r, {
                   getClipboardText: (text: string) => expandPastedTextPlaceholders(text, store.prompt.parts),
                 })
